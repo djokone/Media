@@ -1,5 +1,5 @@
 {
-    "name": "Djokone/Media",
+    "name": "djokone/media",
     "description": "Media plugin for CakePHP",
     "type": "cakephp-plugin",
     "require": {
