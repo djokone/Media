@@ -4,7 +4,9 @@
     "type": "cakephp-plugin",
     "minimum-stability" : "dev",
     "require": {
-        "php": ">=5.4"
+        "php": ">=5.4",
+        "cakephp/cakephp": "3.*",
+        "cakephp/plugin-installer": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
