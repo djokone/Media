@@ -45,7 +45,7 @@ class MediasController extends AppController
      */
     public function index($ref, $ref_id)
     {
-        //debug($_GET);die();
+
     	if (!$this->canUploadMedias($ref, $ref_id)) {
     		die('probleme');
     		//throw new ForbiddenExeption();
@@ -57,10 +57,13 @@ class MediasController extends AppController
         if(!in_array('Media', $this->$ref->Behaviors()->loaded())){
             return $this->render('nobehavior');
         }
+        //debug($this->request->query['editor']); die();
         $id = isset($this->request->query['id']) ? $this->request->query['id'] : false;
         $medias = $this->$ref->Media->find('all')
-        ->where(['ref'=>$ref,'ref_id' => $ref_id]);
-
+        ->orWhere(['ref'=>$ref,'ref' => trim($ref, 's')])
+        ->andWhere(['ref_id' => $ref_id]);
+        //debug($this->request->query);
+        //debug($medias); die();
         $thumbID = false;
         if($this->$ref->hasField('media_id')){
             $reference = $this->$ref->get($ref_id);
@@ -68,7 +71,7 @@ class MediasController extends AppController
         }
 
         $extensions = $this->$ref->Behaviors()->get('Media')->medias['extensions'];
-        $editor = isset($this->request->params['named']['editor']) ? $this->request->params['named']['editor'] : false;
+        $editor = isset($this->request->query['editor']) ? $this->request->query['editor'] : false;
         $this->set(compact('id', 'medias', 'thumbID', 'editor', 'extensions', 'ref'));
     }
 
@@ -84,7 +87,9 @@ class MediasController extends AppController
         }
 
         $media = $this->Medias->newEntity();
+
         $file = $_FILES;
+        //debug($file); die();
 
         if (empty($file)) {
             die('fichier trop volumineux');
@@ -107,13 +112,15 @@ class MediasController extends AppController
                 return false;
             }
         }
+        //$media = $this->Medias->find('all');
         $this->loadModel($ref);
         $thumbID = false;
         if($this->$ref->hasField('media_id')){
             $reference = $this->$ref->get($ref_id);
             $thumbID = $reference->media_id;
         }
-        //debug($this->request->query['id']);
+        
+
         $editor = isset($this->request->params['named']['editor']) ? $this->request->params['named']['editor'] : false;
         $id = isset($this->request->query['id']) ? $this->request->query['id'] : false;
         $this->set(compact('media', 'thumbID', 'editor', 'id', 'file' , 'ref'));

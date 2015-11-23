@@ -1,14 +1,12 @@
 
 <?php 
-//debug($media->file);//die();
-$chemin = WWW_ROOT.trim($media->file,'/'); //die();
+
+$chemin = WWW_ROOT.trim($media->file,'/');
 $sizes = getimagesize(WWW_ROOT.trim($media->file, '/'));  ?>
-<?php //debug($media->ref);?>
 <div class="item <?php if($thumbID && $media->id === $thumbID): ?>thumbnail<?php endif; ?>">
 		<input type="hidden" value="<?php echo $ref;?>" name="refname" >
 		<input type="hidden" value="<?php echo $media->position; ?>" name="data[Media][<?php echo $media->id; ?>]">
 		<div class="visu"><?php echo $this->Html->image($media->icon); ?></div>
-		<?php //debug(basename($media->file)); ?>
 
 		<div class="actions">
 			<?php if($thumbID !== false && $media->id !== $thumbID && $media->type == 'pic'): ?>

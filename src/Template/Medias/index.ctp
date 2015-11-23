@@ -1,6 +1,8 @@
 <div class="bloc">
     <div class="content">
-
+	<?php 
+	//die();
+	 ?>
 		<?php 
 		if(isset($_GET['src'])): ?>
 			<div class="expand item">
@@ -104,7 +106,7 @@
 <?php $this->Html->scriptStart(array('block'=>true)); ?>
 
 
-jQuery(function(){
+jQuery(function($){
 	$( "#filelist>form" ).sortable({
 		update:function(){
 			i = 0;
@@ -122,7 +124,7 @@ jQuery(function(){
 		runtimes : 'html5,flash',
 		container: 'plupload',
 		browse_button : 'browse',
-		max_file_size : '50mb',
+		max_file_size : '300mb',
 		flash_swf_url : '<?php echo $this->Url->build('/media/js/plupload.flash.swf'); ?>',
 		url : '<?php echo $this->Url->build(
 	['controller'=>'Medias',
@@ -157,10 +159,12 @@ jQuery(function(){
 
 	uploader.bind('FileUploaded', function(up, file, response){
 		var response = jQuery.parseJSON(response.response);
+		//console.log(response);
 		if(response.error){
 			alert(response.error)
 		}else{
-			$('#'+file.id).before(response.content);
+		//console.log($('#'+file.id));
+			$('#'+file.id).before(response);
 		}
 		$('#'+file.id).remove();
 	});

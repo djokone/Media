@@ -15,11 +15,9 @@
         <!-- jQuery AND jQueryUI -->
 
         <?php echo $this->Html->script('jquery/jquery.js'); ?>
-        <?php echo $this->Html->script('jquery/jqueryui.js'); ?>
+        <?php echo $this->Html->script('media/jqueryui.js'); ?>
         <?php echo $this->fetch('script'); ?>
-		<script type="text/javascript">
-		</script>
 
     </body>
 </html>
-<?php echo die(); ?>
+<?php// echo die(); ?>
