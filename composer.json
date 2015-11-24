@@ -2,7 +2,7 @@
     "name": "djokone/media",
     "description": "Media plugin for CakePHP",
     "type": "cakephp-plugin",
-    "minimum-stability" : "dev",
+    "minimum-stability" : "alpha",
     "require": {
         "php": ">=5.4",
         "cakephp/cakephp": "3.*",
