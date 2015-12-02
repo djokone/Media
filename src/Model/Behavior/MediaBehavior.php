@@ -31,7 +31,8 @@ class MediaBehavior extends Behavior {
             'foreignKey' => 'ref_id',
 			'order'		 => 'Media.position ASC',
 			'conditions' => 'ref = "'.$this->_table->table().'"',
-			'dependent'  => true
+			'dependent'  => true,
+			'cascadeCallbacks' => true
         ]);
 
 		if($this->_table->hasField('media_id')){
