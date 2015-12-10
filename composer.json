@@ -7,6 +7,7 @@
         "composer/installers": "~1.0",
         "php": ">=5.4",
         "cakephp/cakephp": "3.*",
+        "intervention/image": "^2.3@dev",
         "cakephp/plugin-installer": "*"
     },
     "require-dev": {
