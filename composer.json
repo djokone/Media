@@ -27,4 +27,5 @@
         "installer-paths": {
             "plugins/Media" : ["djokone/Media"]
         }
+    }
 }
