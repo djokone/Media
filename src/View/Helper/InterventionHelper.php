@@ -41,7 +41,14 @@ class InterventionHelper extends Helper
 		if (empty(glob($absolutDest)) || $force) {
 			//die('lol');
 			if ($type == 'ratio'){
-				$img = $this->resizeRatio($img);
+				if ($this->width===null) {
+					$img = $this->resizeOnlyHeight($img);
+				}elseif($this->height===null){
+					$img = $this->resizeOnlyWidth($img);
+				}else{
+					$img = $this->resizeRatio($img);
+					
+				}
 			}elseif($type == 'crop'){
 				$img = $this->resizeCrop();
 			}
@@ -51,6 +58,18 @@ class InterventionHelper extends Helper
 		$img = $this->Html->image($dest, $options);
 		return $img;
 		
+	}
+	private function resizeOnlyWidth($img){
+		$img = $img->resize($this->width, null, function($constraint){
+				$constraint->aspectRatio();
+			});
+		return $img;
+	}
+	private function resizeOnlyHeight($img){
+		$img = $img->resize(null, $this->height, function($constraint){
+				$constraint->aspectRatio();
+			});
+		return $img;
 	}
 
 	private function getFormat($img){
