@@ -4,6 +4,7 @@
     "type": "cakephp-plugin",
     "minimum-stability" : "alpha",
     "require": {
+        "composer/installers": "~1.0",
         "php": ">=5.4",
         "cakephp/cakephp": "3.*",
         "cakephp/plugin-installer": "*"
@@ -21,5 +22,9 @@
             "Media\\Test\\": "tests",
             "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
         }
-    }
+    },
+    "extra" : {
+        "installer-paths": {
+            "plugins/Media" : ["djokone/Media"]
+        }
 }
