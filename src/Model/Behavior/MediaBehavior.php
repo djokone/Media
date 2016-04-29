@@ -26,11 +26,12 @@ class MediaBehavior extends Behavior {
 
 		$this->medias =  array_merge($this->options, $config);
 
+		//debug(Inflector::singularize($this->_table->table()));die();
 		$this->_table->hasMany('Media', [
             'className' => 'Media.Medias',
             'foreignKey' => 'ref_id',
 			'order'		 => 'Media.position ASC',
-			'conditions' => 'ref = "'.$this->_table->table().'"',
+			'conditions' => 'ref = "'.$this->_table->table().'" OR ref = "'.ucFirst(Inflector::singularize($this->_table->table())).'"',
 			'dependent'  => true,
 			'cascadeCallbacks' => true
         ]);
