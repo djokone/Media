@@ -16,6 +16,12 @@ class MediaHelper extends Helper{
 		return $this->textarea($field, $ref, $ref_id, 'tinymce', $options);
 	}
 
+	public function tinymceV4($field, $ref, $ref_id, $options = array()){
+		$this->Html->script('/media/js/tinymce4/tinymce.min.js', array('block' => 'script'));
+		$this->Html->css('/Media/js/tinymce4/tinymce.min.js', array('block' => 'css'));
+		return $this->textarea($field, $ref, $ref_id, 'tinymce4' , $options);
+	}
+
 	public function ckeditor($field, $ref, $ref_id, $options = array()) {
 		$this->Html->script('/media/js/ckeditor/ckeditor.js', array('block' => 'script'));
 		return $this->textarea($field, $ref, $ref_id, 'ckeditor', $options);
